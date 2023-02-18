@@ -1,0 +1,32 @@
+{
+  "name": "vite-plugin-mini-ci",
+  "version": "0.0.1",
+  "description": "小程序 CI 集成，打开小程序开发工具、上传并生成体验码、生成预览二维码",
+  "author": "yanquanfahei <1449826851@qq.com>",
+  "license": "MIT",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public"
+  },
+  "devDependencies": {
+    "@eye-socket/eslint-config-ts": "^0.0.4",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.34.0",
+    "typescript": "^4.9.5",
+    "unbuild": "^1.1.2",
+    "vite": "^4.1.2"
+  }
+}

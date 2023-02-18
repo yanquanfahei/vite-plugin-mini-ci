@@ -1,0 +1,3 @@
+{
+  "extends": "@eye-socket/eslint-config-ts"
+}
