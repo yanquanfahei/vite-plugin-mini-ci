@@ -19,7 +19,7 @@ export default function miniCIPlugin (option?: MiniCIPluginOpt): PluginOption {
         developTool
       })
 
-      ci.open()
+      ci.preview()
     }
   }
 }
