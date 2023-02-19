@@ -2,19 +2,27 @@ lockfileVersion: 5.4
 
 specifiers:
   '@eye-socket/eslint-config-ts': ^0.0.4
+  '@types/minimist': ^1.2.2
+  '@types/node': ^18.14.0
   bumpp: ^8.2.1
   eslint: ^8.34.0
+  minimist: ^1.2.8
   typescript: ^4.9.5
   unbuild: ^1.1.2
-  vite: ^4.1.2
+  vite: 4.0.4
+
+dependencies:
+  minimist: 1.2.8
 
 devDependencies:
   '@eye-socket/eslint-config-ts': 0.0.4_7kw3g6rralp5ps6mg3uyzz6azm
+  '@types/minimist': 1.2.2
+  '@types/node': 18.14.0
   bumpp: 8.2.1
   eslint: 8.34.0
   typescript: 4.9.5
   unbuild: 1.1.2
-  vite: 4.1.2
+  vite: 4.0.4_@types+node@18.14.0
 
 packages:
 
@@ -872,6 +880,14 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/minimist/1.2.2:
+    resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/node/18.14.0:
+    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
     dev: true
 
   /@types/resolve/1.20.2:
@@ -2414,7 +2430,6 @@ packages:
 
   /minimist/1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: true
 
   /mkdist/1.1.1_typescript@4.9.5:
     resolution: {integrity: sha512-9cEzCsBD0qpybR/lJMB0vRIDZiHP7hJHTN2mQtFU2qt0vr7lFnghxersOJbKLshaDsl4GlnY2OBzmRRUTfuaDg==}
@@ -2982,8 +2997,8 @@ packages:
       punycode: 2.3.0
     dev: true
 
-  /vite/4.1.2:
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite/4.0.4_@types+node@18.14.0:
+    resolution: {integrity: sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3007,6 +3022,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 18.14.0
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
