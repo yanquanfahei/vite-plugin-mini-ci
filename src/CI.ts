@@ -1,47 +1,44 @@
 import { getProjectPath } from './shared'
-import { openAlipayTool } from './open'
-import { previewAlipay } from './preview'
+import AlipayCI, { AlipayCIOpt } from './AlipayCI'
 
 export type DevelopTool = 'mp-alipay' | undefined
-
-interface AlipayOpt {
-  appPath?: string,
-  appId: string
-}
-
 export interface MiniCIPluginOpt {
-  alipayOpt?: AlipayOpt
+  alipayOpt?: AlipayCIOpt
 }
 
 export interface CIOption extends MiniCIPluginOpt {
-  projectPath?: string
   isBuild: boolean
   developTool: DevelopTool
+}
+interface IContext {
+  open: (project: string) => void
+  preview: (project: string) => void
+  upload: (project: string) => void
 }
 
 export default class CI {
   option: CIOption
+  context!: IContext
+  projectPath: string
   constructor (option: CIOption) {
-    option.projectPath = getProjectPath(option.isBuild, option.developTool)
+    this.projectPath = getProjectPath(option.isBuild, option.developTool)
     this.option = option
+
+    if (this.isAlipayMp) {
+      this.context = new AlipayCI(option.alipayOpt)
+    }
   }
 
   open () {
-    const { alipayOpt, projectPath } = this.option
-    if (this.isAlipayMp) {
-      openAlipayTool(alipayOpt?.appPath, projectPath)
-    }
+    this.context.open(this.projectPath)
   }
 
   preview () {
-    const { alipayOpt, projectPath } = this.option
-    const { appId } = alipayOpt!
-    if (this.isAlipayMp) {
-      previewAlipay({
-        appId,
-        project: projectPath
-      })
-    }
+    this.context.preview(this.projectPath)
+  }
+
+  upload () {
+    this.context.upload(this.projectPath)
   }
 
   get isAlipayMp () {

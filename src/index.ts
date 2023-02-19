@@ -2,7 +2,7 @@ import { PluginOption } from 'vite'
 import minimist from 'minimist'
 import CI, { MiniCIPluginOpt, DevelopTool } from './CI'
 
-export default function miniCIPlugin (option?: MiniCIPluginOpt): PluginOption {
+export default function miniCIPlugin (option: MiniCIPluginOpt): PluginOption {
   return {
     name: 'miniCIPlugin',
     buildEnd () {
@@ -14,12 +14,12 @@ export default function miniCIPlugin (option?: MiniCIPluginOpt): PluginOption {
       const isBuild = !!argv._[0]
 
       const ci = new CI({
-        ...(option || {}),
+        ...option,
         isBuild,
         developTool
       })
 
-      ci.preview()
+      ci.upload()
     }
   }
 }
