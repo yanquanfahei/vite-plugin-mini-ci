@@ -29,13 +29,15 @@ export interface AlipayCIOpt {
 
 export default class AlipayCI {
   opt: AlipayCIOpt
-  constructor (opt?: AlipayCIOpt) {
+  projectPath: string
+  constructor (projectPath: string, opt?: AlipayCIOpt) {
     this.opt = opt || { appId: '' }
+    this.projectPath = projectPath
   }
 
-  open (projectPath: string) {
+  open () {
     const { openOpt } = this.opt
-    const project = openOpt?.project || projectPath
+    const project = openOpt?.project || this.projectPath
 
     minidev.startIde({
       ...(openOpt || {}),
@@ -43,21 +45,12 @@ export default class AlipayCI {
     })
   }
 
-  async preview (projectPath: string) {
-    const { authentication, previewOpt, appId } = this.opt
-    const { privateKey, toolId } = authentication || {}
+  async preview () {
+    if (!await this.verifyAuth()) return
 
-    if (!privateKey || !toolId) {
-      console.log('真机预览前需要授权信息请依照 https://opendocs.alipay.com/mini/02q29w 地址设置 authentication.privateKey 和 authentication.toolId')
-      return
-    }
+    const { previewOpt, appId } = this.opt
 
-    await minidev.config.useRuntime({
-      'alipay.authentication.privateKey': privateKey,
-      'alipay.authentication.toolId': toolId
-    })
-
-    const project = previewOpt?.project || projectPath
+    const project = previewOpt?.project || this.projectPath
 
     minidev.preview({
       appId,
@@ -66,21 +59,11 @@ export default class AlipayCI {
     })
   }
 
-  async upload (projectPath: string) {
-    const { authentication, uploadOpt, appId } = this.opt
-    const { privateKey, toolId } = authentication || {}
+  async upload () {
+    if (!await this.verifyAuth()) return
+    const { uploadOpt, appId } = this.opt
 
-    if (!privateKey || !toolId) {
-      console.log('上传前需要授权信息请依照 https://opendocs.alipay.com/mini/02q29w 地址设置 authentication.privateKey 和 authentication.toolId')
-      return
-    }
-
-    await minidev.config.useRuntime({
-      'alipay.authentication.privateKey': privateKey,
-      'alipay.authentication.toolId': toolId
-    })
-
-    const project = uploadOpt?.project || projectPath
+    const project = uploadOpt?.project || this.projectPath
 
     const uploadResult = await minidev.upload({
       appId,
@@ -93,5 +76,21 @@ export default class AlipayCI {
     })
 
     console.log(uploadResult.version)
+  }
+
+  async verifyAuth (): Promise<boolean> {
+    const { authentication } = this.opt
+    const { privateKey, toolId } = authentication || {}
+    if (!privateKey || !toolId) {
+      console.log('此操作需要授权信息请依照 https://opendocs.alipay.com/mini/02q29w 地址配置参数 authentication.privateKey 和 authentication.toolId')
+      return false
+    }
+
+    await minidev.config.useRuntime({
+      'alipay.authentication.privateKey': privateKey,
+      'alipay.authentication.toolId': toolId
+    })
+
+    return true
   }
 }

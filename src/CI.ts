@@ -11,34 +11,33 @@ export interface CIOption extends MiniCIPluginOpt {
   developTool: DevelopTool
 }
 interface IContext {
-  open: (project: string) => void
-  preview: (project: string) => void
-  upload: (project: string) => void
+  open: () => void
+  preview: () => void
+  upload: () => void
 }
 
 export default class CI {
   option: CIOption
   context!: IContext
-  projectPath: string
   constructor (option: CIOption) {
-    this.projectPath = getProjectPath(option.isBuild, option.developTool)
+    const projectPath = getProjectPath(option.isBuild, option.developTool)
     this.option = option
 
     if (this.isAlipayMp) {
-      this.context = new AlipayCI(option.alipayOpt)
+      this.context = new AlipayCI(projectPath, option.alipayOpt)
     }
   }
 
   open () {
-    this.context.open(this.projectPath)
+    this.context.open()
   }
 
   preview () {
-    this.context.preview(this.projectPath)
+    this.context.preview()
   }
 
   upload () {
-    this.context.upload(this.projectPath)
+    this.context.upload()
   }
 
   get isAlipayMp () {
