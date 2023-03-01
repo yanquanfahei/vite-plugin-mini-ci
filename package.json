@@ -1,5 +1,6 @@
 {
   "name": "vite-plugin-mini-ci",
+  "type": "module",
   "version": "0.0.1",
   "description": "小程序 CI 集成，打开小程序开发工具、上传并生成体验码、生成预览二维码",
   "author": "yanquanfahei <1449826851@qq.com>",
@@ -20,7 +21,9 @@
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "dev": "unbuild --stub",
