@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-mini-ci",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "小程序 CI 集成，打开小程序开发工具、上传并生成体验码、生成预览二维码",
   "author": "yanquanfahei <1449826851@qq.com>",
   "license": "MIT",
@@ -19,7 +19,6 @@
     }
   },
   "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -28,7 +27,11 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
+    "prepublish": "pnpm build",
     "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.4"
   },
   "dependencies": {
     "minidev": "^1.7.0",
