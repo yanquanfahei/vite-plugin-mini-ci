@@ -18,12 +18,14 @@ export default function miniCIPlugin (option: MiniCIPluginOpt): PluginOption {
         developTool
       })
       const { VITE_PLUGIN_MINI_CI } = process.env
-
-      if (VITE_PLUGIN_MINI_CI === 'open') {
+      const CIMethods = VITE_PLUGIN_MINI_CI!.split(',')
+      if (CIMethods.includes('open')) {
         ci.open()
-      } else if (VITE_PLUGIN_MINI_CI === 'preview') {
+      }
+      if (CIMethods.includes('preview')) {
         ci.preview()
-      } else if (VITE_PLUGIN_MINI_CI === 'upload') {
+      }
+      if (CIMethods.includes('upload')) {
         ci.upload()
       }
     }
