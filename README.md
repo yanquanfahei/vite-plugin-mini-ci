@@ -10,13 +10,13 @@ pnpm add cross-env vite-plugin-mini-ci -D
 
 ## Usage
 
-1. 在项目运行脚本中添加环境变量参数 `cross-env VITE_PLUGIN_MINI_CI=open`
+1. 在项目运行脚本中添加环境变量参数 `VITE_PLUGIN_MINI_CI`，以英文逗号分割来执行多个指令。
 
 ```json
 // package.json
 {
   "scripts": {
-    "dev:mp-alipay": "cross-env VITE_PLUGIN_MINI_CI=open uni -p mp-alipay"
+    "dev:mp-alipay": "cross-env VITE_PLUGIN_MINI_CI=open,preview uni -p mp-alipay"
   }
 }
 ```
