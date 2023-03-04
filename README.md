@@ -45,3 +45,9 @@ export default defineConfig({
 [官方CI文档](https://opendocs.alipay.com/mini/02q17h)
 
 支付宝真机预览 `preview` 以及 `upload` 需要 [授权信息](https://opendocs.alipay.com/mini/02q29w)
+
+## 微信 CI
+
+[官方CI文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+
+[官方CI包](https://www.npmjs.com/package/miniprogram-ci)
