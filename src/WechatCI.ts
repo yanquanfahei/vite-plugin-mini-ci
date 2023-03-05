@@ -47,6 +47,7 @@ export default class WechatCI {
       qrcodeFormat: 'image',
       qrcodeOutputDest: previewQrcodePath
     })
+    console.log(previewResult)
   }
 
   async upload () {
