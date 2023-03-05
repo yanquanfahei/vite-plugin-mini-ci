@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "minidev": "^1.7.0",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "miniprogram-ci": "^1.9.5"
   },
   "devDependencies": {
     "@eye-socket/eslint-config-ts": "^0.0.4",
