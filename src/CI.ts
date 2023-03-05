@@ -1,9 +1,11 @@
 import { getProjectPath } from './shared'
 import AlipayCI, { AlipayCIOpt } from './AlipayCI'
+import WechatCI, { WechatCIOpt } from './WechatCI'
 
-export type DevelopTool = 'mp-alipay' | undefined
+export type DevelopTool = 'mp-alipay' | 'mp-weixin' | undefined
 export interface MiniCIPluginOpt {
   alipayOpt?: AlipayCIOpt
+  wechatCIOpt?: WechatCIOpt
 }
 
 export interface CIOption extends MiniCIPluginOpt {
@@ -25,6 +27,8 @@ export default class CI {
 
     if (this.isAlipayMp) {
       this.context = new AlipayCI(projectPath, option.alipayOpt)
+    } else if (this.isWechatMp) {
+      this.context = new WechatCI(projectPath, option.wechatCIOpt)
     }
   }
 
@@ -43,5 +47,10 @@ export default class CI {
   get isAlipayMp () {
     const { developTool } = this.option
     return developTool === 'mp-alipay'
+  }
+
+  get isWechatMp () {
+    const { developTool } = this.option
+    return developTool === 'mp-weixin'
   }
 }

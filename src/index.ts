@@ -8,7 +8,7 @@ export default function miniCIPlugin (option: MiniCIPluginOpt): PluginOption {
     buildEnd () {
       const argv = minimist(process.argv.slice(2))
       const developTool = argv.p as DevelopTool
-      if (!developTool || !['mp-alipay'].includes(developTool)) return
+      if (!developTool || !['mp-alipay', 'mp-weixin'].includes(developTool)) return
 
       const isBuild = !!argv._[0]
 
@@ -18,7 +18,7 @@ export default function miniCIPlugin (option: MiniCIPluginOpt): PluginOption {
         developTool
       })
       const { VITE_PLUGIN_MINI_CI } = process.env
-      const CIMethods = VITE_PLUGIN_MINI_CI!.split(',')
+      const CIMethods = (VITE_PLUGIN_MINI_CI || '').split(',')
       if (CIMethods.includes('open')) {
         ci.open()
       }
