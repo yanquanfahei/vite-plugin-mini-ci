@@ -31,9 +31,9 @@ import miniCI from 'vite-plugin-mini-ci'
 export default defineConfig({
   plugins: [uni(), miniCI({
     alipayOpt: {
-      appId: '2021003139676331',
+      appId: '你的appid',
       openOpt: {
-        appPath: 'D:\\mp-alipay\\小程序开发者工具'
+        appPath: '开发者工具安装目录'
       }
     }
   })]
