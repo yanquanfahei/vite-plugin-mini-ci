@@ -5,7 +5,7 @@ import CI, { MiniCIPluginOpt, DevelopTool } from './CI'
 export default function miniCIPlugin (option: MiniCIPluginOpt): PluginOption {
   return {
     name: 'miniCIPlugin',
-    buildEnd () {
+    closeBundle () {
       const argv = minimist(process.argv.slice(2))
       const developTool = argv.p as DevelopTool
       if (!developTool || !['mp-alipay', 'mp-weixin'].includes(developTool)) return
