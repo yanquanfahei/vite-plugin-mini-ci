@@ -10,6 +10,7 @@
     "plugin",
     "uni-app",
     "mp-alipay",
+    "mp-weixin",
     "CI"
   ],
   "exports": {
@@ -28,7 +29,8 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
-    "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public"
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp package.json --commit --push --tag && pnpm publish --access public"
   },
   "peerDependencies": {
     "vite": "^4.0.4"
