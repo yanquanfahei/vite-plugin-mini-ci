@@ -16,7 +16,10 @@ export default defineConfig({
       }
     },
     wechatCIOpt: {
-      appId: 'wx3a602dc84f1c66c1'
+      projectOpt: {
+        appid: 'wxd91697258c25ca9a',
+        privateKeyPath: 'private.wxd91697258c25ca9a.key'
+      }
     }
   })]
 })
